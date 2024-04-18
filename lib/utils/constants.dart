@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppStrings {
-  static const String appTitle = 'Businesses';
-  static const String businessDetailsTitle = 'Business Details';
-
+  static const String appTitle = 'The Chef’s Kitchen';
 }
 
 class AppColors {

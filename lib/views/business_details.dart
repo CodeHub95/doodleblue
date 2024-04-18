@@ -16,34 +16,43 @@ class BusinessDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppStrings.businessDetailsTitle),
+        title: Text(business.name??''),
         backgroundColor: AppColors.appBarColor,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            BusinessCard(
-              cardHeight: cardHeight,
-              cardWidth: cardWidth,
-              imageUrl: business.imageUrl!,
-              name: business.name ?? '',
-              rating: business.rating ?? 0.0,
-              reviewCount: business.reviewCount ?? 0,
-              displayAddress: business.location?.displayAddress?.join(', ') ?? '',
-              businessCategory: business.categories,
-              phone: business.phone,
-              transaction: business.transactions,
-              isClosed: business.isClosed,
-              onTap: () {
-
-              },
-            ),
-
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.green.shade200, Colors.green.shade400],
+          ),
         ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              BusinessCard(
+                cardHeight: cardHeight,
+                cardWidth: cardWidth,
+                imageUrl: business.imageUrl!,
+                name: business.name ?? '',
+                rating: business.rating ?? 0.0,
+                reviewCount: business.reviewCount ?? 0,
+                displayAddress: business.location?.displayAddress?.join(', ') ?? '',
+                businessCategory: business.categories,
+                phone: business.phone,
+                transaction: business.transactions,
+                isClosed: business.isClosed,
+                onTap: () {
 
+                },
+              ),
+
+            ],
+          ),
+
+        ),
       ),
     );
   }

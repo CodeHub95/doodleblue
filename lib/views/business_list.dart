@@ -36,18 +36,63 @@ class _BusinessListState extends State<BusinessList> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    double cardHeight = MediaQuery.of(context).size.height * 0.25;
-    double cardWidth = MediaQuery.of(context).size.width * 0.9;
+    double cardHeight = MediaQuery
+        .of(context)
+        .size
+        .height * 0.25;
+    double cardWidth = MediaQuery
+        .of(context)
+        .size
+        .width * 0.9;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppStrings.appTitle),
-        backgroundColor: AppColors.appBarColor,
-        elevation: 0,
-      ),
+          title: const Text(AppStrings.appTitle),
+          backgroundColor: AppColors.appBarColor,
+          elevation: 0,
+          actions: [
+
+            Stack(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.shopping_cart, size: 30),
+                  onPressed: () {
+                    // Implement cart functionality
+                  },
+                ),
+                Positioned(
+                  right: 5,
+                  top: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
+                    child: const Text(
+                      '0', // Replace '3' with the actual number of items
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ]),
       body: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.green.shade200, Colors.green.shade400],
+          ),
+        ),
         child: FutureBuilder<void>(
             future: businessViewModel.fetchBusinesses(),
             builder: (context, snapshot) {
@@ -111,6 +156,52 @@ class _BusinessListState extends State<BusinessList> {
                 );
               }
             }),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.green.shade200,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.white.withOpacity(0.7),
+        currentIndex: 0,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: Colors.green.shade200,
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.green.shade200,
+            icon: Icon(Icons.category),
+            label: 'Categories',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.green.shade200,
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.green.shade200,
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+            // Navigate to Home screen
+              break;
+            case 1:
+            // Navigate to Categories screen
+              break;
+            case 2:
+            // Navigate to Cart screen
+              break;
+            case 3:
+            // Navigate to Profile screen
+              break;
+          }
+        },
       ),
     );
   }
